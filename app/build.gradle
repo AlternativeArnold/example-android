@@ -5,7 +5,7 @@ android {
     buildToolsVersion "30.0.0"
 
     defaultConfig {
-        applicationId "com.codemagic.examplenativeandroid"
+        applicationId "com.codemagic.test123"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
