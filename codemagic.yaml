@@ -2,7 +2,7 @@
 
 workflows:
   android_qa:
-    name: Run tests and build debug apk
+    name: Sign release and Firebase
     environment:
       vars:
         CM_KEY_ALIAS_NAME: Encrypted(Z0FBQUFBQmZteUZpZUhXNkhFNU53cnRQRFFDVE9CS3JjeWMzaHJUdmxtbExfU05LT1VITno1XzktcXRIdjM5dVRWZ2VXcmFHbGs2dUx5M0VnOVEtZElmazQ5UmtYTkVabHc9PQ==)
@@ -14,12 +14,6 @@ workflows:
     cache:
       cache_paths:
         - $HOME/.gradle/caches
-    triggering:
-      events:
-        - push
-      branch_patterns:
-        - pattern: '*'
-      cancel_previous_builds: true
     scripts:
     - name: Set up key.properties
       script: |
@@ -31,8 +25,7 @@ workflows:
         storeFile=/tmp/keystore.keystore
         EOF
       - echo $FIREBASE_JSON | base64 --decode > $FCI_BUILD_DIR/app/google-services.json
-      - ./gradlew test
-      - ./gradlew assembleDebug
+      - ./gradlew assembleRelease
       - firebase appdistribution:distribute $FCI_BUILD_OUTPUT_DIR/app-release-universal.apk --app 1:99999999999:android:8888888888888888888888 --groups "android-testers" --token "$FIREBASE_TOKEN"
     artifacts:
       - app/build/outputs/**/*.apk
