@@ -21,7 +21,7 @@ workflows:
           cat >> "$FCI_BUILD_DIR/key.properties" <<EOF
           storePassword=$CM_KEYSTORE_PASSWORD
           keyPassword=$CM_KEY_ALIAS_PASSWORD
-          keyAlias=$CM_KEY_ALIAS_USERNAME
+          keyAlias=$CM_KEY_ALIAS_NAME
           storeFile=/tmp/keystore.keystore
           EOF
       - echo $FIREBASE_JSON | base64 --decode > $FCI_BUILD_DIR/app/google-services.json
