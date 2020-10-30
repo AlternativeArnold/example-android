@@ -10,14 +10,15 @@ if (keystorePropertiesFile.exists()) {
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.0"
+    
+    def appVersionCode = Integer.valueOf(System.env.BUILD_NUMBER ?: 0)
 
     defaultConfig {
         applicationId "com.codemagic.test123"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 1
+        versionCode appVersionCode
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     
