@@ -26,6 +26,6 @@ workflows:
           EOF
       - echo $FIREBASE_JSON | base64 --decode > $FCI_BUILD_DIR/app/google-services.json
       - ./gradlew assembleRelease
-      - firebase appdistribution:distribute $FCI_BUILD_OUTPUT_DIR/app-release-universal.apk --app 1:99999999999:android:8888888888888888888888 --groups "android-testers" --token "$FIREBASE_TOKEN"
+      - firebase appdistribution:distribute $FCI_BUILD_OUTPUT_DIR/app-release-universal.apk --app 1:425423191271:android:4cbdfbf3477ae61c3bf642 --groups "android-testers" --token "$FIREBASE_TOKEN"
     artifacts:
       - app/build/outputs/**/*.apk
